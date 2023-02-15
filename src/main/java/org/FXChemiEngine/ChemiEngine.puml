@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface Painting {
+    void paint(DrawingObject drawignObject);
+}
+
+interface DrawingObject<R>{
+    +R get();
+    +void draw(int x, int y, Color color);
+}
+
+abstract class EngineObject{
+    #Vector2 position;
+    #Vector2 center;
+}
+
+Shape --|> EngineObject
+
+Shape ..|> Painting
+
+ShapeObject --|> EngineObject
+
+abstract class Shape{
+    #double width;
+    #double height;
+    #Color color;
+    #Color strokeColor;
+}
+
+
+class Scene{
+    -DrawingObject drawignObject;
+    -List<ShapeObject> objects;
+    +void repaint();
+    -void draw();
+}
+
+class ShapeObject{
+    -List<Shape> body;
+}
+
+class Rectange{
+
+}
+
+Rectange --|> Shape
+@enduml
